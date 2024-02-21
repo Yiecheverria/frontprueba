@@ -6,7 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TextInput 
+  TextInput,
+  ImageBackground
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
@@ -17,7 +18,8 @@ export default function PerfilScreen() {
   const urlReddit = "https://www.reddit.com/";
   const urlSnap = "https://www.snapchat.com/";
   const urtele = "https://web.telegram.org/a/";
-  const urltiktok = "https://www.tiktok.com/";
+  const urlkwai = "https://www.kwai.com/es";
+
   const [enteredNumber, setEnteredNumber] = useState('');
   const onPressHandler = () => {
     alert(`Número ingresado: ${enteredNumber}`);
@@ -25,16 +27,18 @@ export default function PerfilScreen() {
 
   return (
     <View style={styles.Container}>
+       <ImageBackground source={require("../img/img_portada.jpg")} resizeMode="cover" style={styles.imgBackground}>
+
       <View>
         <Text style={styles.text}>Mi Perfil</Text>
       </View>
 
       <View style={styles.img}>
         <Image
-          source={require("../img/imagen.png")}
-          style={{ width: 50, height: 50 }}
+          source={require("../img/perfil.jpeg")}
+          style={{ width: 200, height: 200 ,  borderRadius: 200}}
         />
-        <Text style={{ margin: 20 }}> Isabel Echeverria</Text>
+        <Text style={{ margin: 20 }}> Yessenia Isabel Echeverria Muñoz</Text>
       </View>
 
       <View>
@@ -77,38 +81,37 @@ export default function PerfilScreen() {
           <FontAwesome name="snapchat-square" size={60} color="yellow" />
           <Text>Snapchat</Text>
         </TouchableOpacity>
-        {/** telegram*/}
-        <TouchableOpacity
-          onPress={() => Linking.openURL(urtele)}
-          style={{ margin: 5 }}
-        >
-          <FontAwesome name="telegram" size={60} color="blue" />
-          <Text>Telegram</Text>
-        </TouchableOpacity>
+
         {/** tiktok*/}
 
         <TouchableOpacity
-          onPress={() => Linking.openURL(urltiktok)}
+
+          onPress={() => Linking.openURL(urlkwai)}
           style={{ margin: 5 }}
         >
-          <FontAwesome6 name="tiktok" size={60} color="black" />
-          <Text>tiktok</Text>
+          <Image
+            source={require("../img/logokwai.png")}
+            style={{ width: 50, height: 50 }}
+          />
+
+          <Text>kwai</Text>
         </TouchableOpacity>
       </View>
       <View>
-      <TouchableOpacity onPress={onPressHandler}>
-        <View>
-          <Text>Presionar</Text>
-        </View>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={onPressHandler}>
+          <View>
+            <Text>Presionar</Text>
+          </View>
+        </TouchableOpacity>
 
-      <TextInput
-        placeholder="Ingrese un número"
-        keyboardType="numeric"
-        value={enteredNumber}
-        onChangeText={(text) => setEnteredNumber(text)}
-      />
-    </View>
+        <TextInput
+          placeholder="Ingrese un número"
+          keyboardType="numeric"
+          value={enteredNumber}
+          onChangeText={(text) => setEnteredNumber(text)}
+        />
+      </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -117,6 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    
   },
   text: {
     fontSize: 20,
@@ -132,5 +136,13 @@ const styles = StyleSheet.create({
     marginTop: 50,
     justifyContent: 'center',
     alignItems: "center",
+   
+  },
+  imgBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 200,  // Ajusta la altura según tus necesidades
   },
 });
